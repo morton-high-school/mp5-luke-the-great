@@ -1,35 +1,60 @@
 public class BetterArray{
     
-    private static int size;
+    private int size;
     public int[] array;
     
 
     public BetterArray(){
         size = 0;
-        int[] array = new int[0];
+        array = new int[0];
     }
 
     public BetterArray(int size){
-        this.size = size;
-        int[] array = new int[size];
+        array = new int[size];
+        this.size = 0;
     }
 
-    public static int size(){
+    public int size(){
         return size;
     }
 // Returns the number of elements in the list
 
     public boolean add(int item){
+        if(array.length == 0){
+            int[] NewArray = new int[1];
+            array = new int[NewArray.length];
+            for(int i=0; i<NewArray.length; i++){
+                array[i] = NewArray[i];
+            }
+        }
+        if(size >= array.length){
+            int[] NewArray = new int[array.length*2];
+            for(int i=0; i<array.length; i++){
+                NewArray[i] = array[i];
+            }
+            array = new int[NewArray.length];
+            for(int i=0; i<NewArray.length; i++){
+                array[i] = NewArray[i];
+            }
+        }
         array[size] = item;
         size++;
-        if(size >= array.length){
-            int[] newArray = new int[array.length*2];
-        }
         return true;
     }
 // appends item to the end of the list; returns true
 
     public void add(int index, int item){
+        
+        if(size >= array.length){
+            int[] NewArray = new int[array.length*2];
+            for(int i=0; i<array.length; i++){
+                NewArray[i] = array[i];
+            }
+            array = new int[NewArray.length];
+            for(int i=0; i<NewArray.length; i++){
+                array[i] = NewArray[i];
+            }
+        }
         int var = array[index];
         array[index] = item;
         for(int i=index+1; i<array.length; i++){
@@ -37,10 +62,9 @@ public class BetterArray{
             var = array[i];
             array[i] = skib;
         }
+        array[index] = item;
         size++;
-        if(size >= array.length){
-            int[] newArray = new int[array.length*2];
-        }
+        
     }
 // Inserts item at position index, moving elements at position index and higher to
 // the right and adds 1 to size
@@ -51,7 +75,7 @@ public class BetterArray{
     }
 // Returns the element at position index in the list
 
-    public static int set(int index, int item){
+    public int set(int index, int item){
         int temp = array[index];
         array[index] = item;
         return temp;
@@ -60,8 +84,13 @@ public class BetterArray{
 // at position index
 
     public int remove(int index){
-        int temp = index;
-        this.index = 0;
+        int temp = array[index];
+        
+        for(int i=index; i<array.length - 1; i++){
+            // int skib = i + 1;
+            array[i] = array[i + 1];
+        }
+        
         size--;
         return temp;
     }

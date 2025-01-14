@@ -38,6 +38,8 @@ public class BetterArrayAutograder{
     boolean t4 = a2.size() == 0;
 
     if(!t1){
+      System.out.println(a1.array.length);
+      System.out.println(b1.length);
       System.out.println("Failed Constructors test 1.");
     }
     if(!t2){
@@ -210,12 +212,16 @@ public class BetterArrayAutograder{
 
     if(!t1){
       System.out.println("Failed Remove test 1.");
+      System.out.println(b1);
     }
     if(!t2){
       System.out.println("Failed Remove test 2.");
     }
     if(!t3){
       System.out.println("Failed Remove test 3.");
+      for(int i=0; i<a1.array.length; i++){
+        System.out.print(a1.array[i] + ", ");
+      }
     }
     if(!t4){
       System.out.println("Failed Remove test 4.");
